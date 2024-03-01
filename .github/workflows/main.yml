@@ -1,0 +1,17 @@
+name: Trigger KAE Dagster image build
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  trigger-kae-dagster-image-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: |
+          curl -X POST 'https://api.github.com/repos/K12-Analytics-Engineering/kae-dagster/actions/workflows/dagster_gke.yml/dispatches' \
+          -H 'Accept: application/vnd.github+json' \
+          -H 'Authorization: Bearer ${{ secrets.PERSONAL_ACCESS_TOKEN }}' \
+          -d '{"ref":"master"}'

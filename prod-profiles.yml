@@ -1,0 +1,9 @@
+default:
+  target: prod
+  outputs:
+    prod:
+      type: bigquery
+      method: oauth
+      project: kae-cloud
+      dataset: prod
+      threads: 3

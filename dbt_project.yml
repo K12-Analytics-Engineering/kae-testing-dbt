@@ -1,0 +1,50 @@
+name: 'testing'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+vars:
+  current_school_year: 2024
+
+models:
+  +persist_docs:
+    relation: true
+    columns: true
+  analytics:
+    +schema: staging
+    +materialized: table
+    assessment:
+      +schema: assessment
+      intermediate:
+        +schema: staging
+    attendance:
+      +schema: attendance
+      intermediate:
+        +schema: staging
+    behavior:
+      +schema: behavior
+      intermediate:
+        +schema: staging
+    core:
+      +schema: core
+      intermediate:
+        +schema: staging
+    enrollment:
+      +schema: enrollment
+      intermediate:
+        +schema: staging
+    staging:
+      +schema: staging
