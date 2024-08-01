@@ -6,4 +6,4 @@ default:
       method: oauth
       project: kae-cloud
       dataset: prod
-      threads: 3
+      threads: 20
